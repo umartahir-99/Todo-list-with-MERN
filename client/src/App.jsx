@@ -1,0 +1,20 @@
+
+import { ConfigProvider } from 'antd'
+import Routes from './pages/Routes'
+import ScreenLoader from './components/Misc/ScreenLoader'
+import {useAuth} from './context/Auth'
+const App = () => {
+  const {isAppLoading} = useAuth()
+  return (
+   <div>
+  <ConfigProvider 
+    theme={{ token: {colorPrimary: "#1d3557"  }, components: {Button: {controlOutlineWidth: 0  }}}}>
+    {!isAppLoading ? <Routes /> : <ScreenLoader/>}
+
+    
+  </ConfigProvider>
+</div>
+  )
+}
+
+export default App
