@@ -18,7 +18,7 @@ router.post("/create", verifyToken,upload.fields([{name:"image"}]), async (req, 
           {folder: "images/"},
           (error, result)=>{
            if(error){return reject(error)}
-imageURL = result.secure_url, imagePublicId = result.public_id;
+            imageURL = result.secure_url, imagePublicId = result.public_id;
             resolve()
 
           }

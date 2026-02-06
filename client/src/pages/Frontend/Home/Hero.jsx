@@ -6,7 +6,7 @@ const {Title} = Typography
 const Hero = () => {
   const {user} =useAuth()
   return (
-    <div className='py-1'>
+    <div className='py-20'>
     <div className="container">
         <Row>
             <Col span={24}>

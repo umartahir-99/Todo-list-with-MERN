@@ -127,8 +127,8 @@ const All = () => {
           </Title>
 
           <Button
-            className="mb-5"
-            type="primary"
+            className="mb-5 !bg-blue-900 !text-white"
+            
             size="medium"
             onClick={() => {
               navigate("/dashboard/todos/add");
