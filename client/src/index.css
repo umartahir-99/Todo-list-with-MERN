@@ -1,6 +1,66 @@
 @import "tailwindcss";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
+  /* Footer is in normal flow; no special padding needed */
+
+  img,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /* Used across pages/components (Bootstrap-like container) */
+  .container {
+    width: 100%;
+    max-width: 80rem; /* ~1280px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Prevent long strings/tables from causing sideways scroll */
+  .card {
+    min-width: 0;
+  }
+}
 .screen-loader{
-  background-color: b;
+  background-color: #0b1020;
   display: flex;
   justify-content: center;
   align-items: center;

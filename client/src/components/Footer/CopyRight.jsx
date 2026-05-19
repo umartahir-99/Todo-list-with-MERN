@@ -8,7 +8,7 @@ const CopyRight = () => {
     const year = new Date().getFullYear()
 
   return (
-    <footer className='fixed bottom-0 left-0 right-0 flex justify-center items-center py-1 bg-blue-900 shadow-blue-950   '>
+    <footer className='w-full flex justify-center items-center py-2 bg-blue-900 shadow-blue-950'>
         <div className='container'>
             <Row className='justify-center'>
                 <Col>

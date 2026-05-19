@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Typography, Button, Table, Dropdown,Image } from "antd";
+import { Typography, Button, Table, Dropdown, Image } from "antd";
 import { useEffect, useState } from "react";
 import { DeleteOutlined, EditOutlined, MoreOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
@@ -58,18 +58,35 @@ const All = () => {
   };
 
   const columns = [
-    {title:'Image' , dataIndex:'imageURL', render:(imageURL)=>imageURL ? <Image src = {imageURL} className="rounded-full" width={64} height={64}/>:<></>},
+    {
+      title: "Image",
+      dataIndex: "imageURL",
+      responsive: ["sm"],
+      render: (imageURL) =>
+        imageURL ? (
+          <Image
+            src={imageURL}
+            className="rounded-full"
+            width={48}
+            height={48}
+          />
+        ) : (
+          <></>
+        ),
+    },
     { title: "Title", dataIndex: "title" },
-    { title: "Due Date", dataIndex: "dueDate" },
-    { title: "Description", dataIndex: "description" },
+    { title: "Due Date", dataIndex: "dueDate", responsive: ["md"] },
+    { title: "Description", dataIndex: "description", responsive: ["lg"] },
     {
       title: "Priority",
       dataIndex: "priority",
+      responsive: ["md"],
       render: (text) => <Text className="text-capitalize">{text}</Text>,
     },
     {
       title: "Date Created",
       dataIndex: "createdAt",
+      responsive: ["xl"],
       render: (text) => (
         <Text className="text-capitalize">
           {dayjs(text).format("dddd, DD-MMM-YY, hh:mm:ss A")}
@@ -119,25 +136,32 @@ const All = () => {
   return (
     <main className="py-5">
       <div className="container">
-        <div className="card px-3 py-4 bg-white rounded-lg shadow-lg">
+        <div className="card px-3 py-4 bg-white rounded-lg shadow-lg overflow-x-auto">
           {/* ✅ Removed mx-auto and max-w-[500px] */}
 
-          <Title level={1} className="text-center">
-            Todos
-          </Title>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
+            <Title level={2} className="!m-0 text-center sm:text-left">
+              Todos
+            </Title>
 
-          <Button
-            className="mb-5 !bg-blue-900 !text-white"
-            
-            size="medium"
-            onClick={() => {
-              navigate("/dashboard/todos/add");
-            }}
-          >
-            Add Todo
-          </Button>
+            <Button
+              className="!bg-blue-900 !text-white w-full sm:w-auto"
+              size="middle"
+              onClick={() => {
+                navigate("/dashboard/todos/add");
+              }}
+            >
+              Add Todo
+            </Button>
+          </div>
 
-          <Table columns={columns} dataSource={todos} loading={isLoading} />
+          <Table
+            columns={columns}
+            dataSource={todos}
+            loading={isLoading}
+            pagination={{ pageSize: 8, showSizeChanger: false }}
+            scroll={{ x: "max-content" }}
+          />
         </div>
       </div>
     </main>

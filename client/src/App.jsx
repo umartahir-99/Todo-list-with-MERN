@@ -6,14 +6,10 @@ import {useAuth} from './context/Auth'
 const App = () => {
   const {isAppLoading} = useAuth()
   return (
-   <div>
-  <ConfigProvider 
+   <ConfigProvider 
     theme={{ token: {colorPrimary: "#1d3557"  }, components: {Button: {controlOutlineWidth: 0  }}}}>
-    {!isAppLoading ? <Routes /> : <ScreenLoader/>}
-
-    
+        {!isAppLoading ? <Routes /> : <ScreenLoader/>}
   </ConfigProvider>
-</div>
   )
 }
 
