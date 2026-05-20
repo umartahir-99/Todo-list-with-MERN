@@ -1,7 +1,4 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import PublicLayout from "../components/Layout/PublicLayout";
-import AuthLayout from "../components/Layout/AuthLayout";
-import DashboardLayout from "../components/Layout/DashboardLayout";
 
 import FrontHome from "./Frontend/Home";
 import FrontAbout from "./Frontend/About";
@@ -18,13 +15,17 @@ import TodosAll from "./Dashboard/Todos/All";
 import TodosAdd from "./Dashboard/Todos/Add";
 import TodosEdit from "./Dashboard/Todos/Edit";
 
+import PublicLayout from "../components/Layout/PublicLayout";
+import AuthLayout from "../components/Layout/AuthLayout";
+import DashboardLayout from "../components/Layout/DashboardLayout";
+
 import NoPage from "../components/Misc/NoPage";
 import ProtectedRoute from '../components/Misc/ProtectedRoute'
 import { useAuth } from '../context/Auth'
+
 const Index = () => {
   const {isAuth} = useAuth()
   return (
-    
     <Routes>
         {/* Public site (header + footer) */}
         <Route element={<PublicLayout />}>
@@ -43,10 +44,10 @@ const Index = () => {
           <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
-        {/* Dashboard (header only) */}
+        {/* Dashboard (header only, protected) */}
         <Route
           path="/dashboard"
-          element={<ProtectedRoute Component={DashboardLayout} />}
+          element={isAuth ? <DashboardLayout /> : <Navigate to="/auth/login" />}
         >
           <Route index element={<DashHome />} />
           <Route path="about" element={<DashAbout />} />

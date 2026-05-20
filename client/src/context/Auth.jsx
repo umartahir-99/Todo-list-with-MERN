@@ -12,6 +12,11 @@ const AuthContext = ({children}) => {
 
         const jwt = token ||  localStorage.getItem("jwt")
 
+        if (!jwt) {
+          setIsAppLoading(false)
+          return
+        }
+
         axios.get("http://localhost:8000/auth/user", {headers:{Authorization:`Bearer ${jwt}`}})
         .then((res)=>{
         const {status, data} = res

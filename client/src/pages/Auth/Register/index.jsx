@@ -124,6 +124,7 @@ const Register = () => {
               htmlType="submit"
               loading={isProcessing}
               onClick={handleRegister}
+              navigate="/auth/login"
             >
               Create Account
             </Button>
